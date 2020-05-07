@@ -1,1 +1,28 @@
-<p>login works!</p>
+<div class="container">
+    <div style="display: flex; justify-content: center; align-content: center; padding-top: 2em; padding-bottom: 1em;">
+        <button  mat-icon-button routerLink=""><mat-icon style="color: white;">stars</mat-icon></button>
+    <span style="color: white; display: flex; align-items: center; font-size: 20px;">Apple</span>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-around center" >
+    <div fxFlex>
+        <mat-card class="container-card">
+            <form>
+                <h2>Login</h2>
+                
+                    <mat-form-field appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input type="text" matInput>
+                    </mat-form-field><br>
+            
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput>
+                </mat-form-field><br>
+                <button mat-raised-button color="primary">Submit</button>
+            </form>
+            </mat-card>
+    </div>
+    
+
+</div>
+</div>

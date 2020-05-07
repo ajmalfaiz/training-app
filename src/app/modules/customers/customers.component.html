@@ -1,1 +1,44 @@
-<p>customers works!</p>
+<div class="container">
+    <div fxLayout="column" fxLayoutAlign="space-around center" style="display: flex; justify-content: center;">
+    <form>
+        <mat-card>
+            <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" >
+            </mat-form-field>
+            </div>
+            <div>
+            <mat-form-field  appearance="outline">
+                <mat-label>Adress</mat-label>
+                <input matInput placeholder="Adress" >
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field  appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <input matInput placeholder="Phone Number" >
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field  appearance="outline">
+                <mat-label>Favourite Sport</mat-label>
+                <mat-select placeholder="Favourite Sport" >
+                    <mat-option value="cricket">Cricket</mat-option>
+                    <mat-option value="football">Football</mat-option>
+                    <mat-option value="hockey">Hockey</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+        </div>
+        <div>
+            <mat-form-field  appearance="outline">
+                <mat-label>Donation Amount</mat-label>
+                <input matInput placeholder="Donation Amount" >
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary">Submit</button>
+        </mat-card>
+    </form>
+</div>
+</div>

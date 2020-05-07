@@ -7,7 +7,13 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { DefaultComponent } from './default.component';
 import { AdminComponent } from 'src/app/modules/admin/admin.component';
 import { CustomersComponent } from 'src/app/modules/customers/customers.component';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -21,7 +27,14 @@ import { CustomersComponent } from 'src/app/modules/customers/customers.componen
     CommonModule,
     SharedModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTableModule,
+    FlexLayoutModule
   ]
 })
 export class DefaultModule { }
