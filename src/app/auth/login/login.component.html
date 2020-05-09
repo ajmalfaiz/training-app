@@ -6,19 +6,19 @@
 <div fxLayout="row" fxLayoutAlign="space-around center" >
     <div fxFlex>
         <mat-card class="container-card">
-            <form>
+            <form (ngSubmit)="onSubmit()">
                 <h2>Login</h2>
                 
                     <mat-form-field appearance="outline">
                         <mat-label>Username</mat-label>
-                        <input type="text" matInput>
+                        <input type="text" matInput [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
                     </mat-form-field><br>
             
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input type="password" matInput>
+                    <input type="password" matInput [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
                 </mat-form-field><br>
-                <button mat-raised-button color="primary">Submit</button>
+                <button mat-raised-button color="primary" >Submit</button>
             </form>
             </mat-card>
     </div>

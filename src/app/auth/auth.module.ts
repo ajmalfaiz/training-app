@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [ LoginComponent],
@@ -19,7 +21,10 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatIconModule,
     FlexLayoutModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
     
   ]
 })
