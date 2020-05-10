@@ -1,29 +1,31 @@
 <div class="container">
     <div fxLayout="column" fxLayoutAlign="space-around center" style="display: flex; justify-content: center;">
-    <form>
+    <form (ngSubmit)="onAdd(form)" #form="ngForm" >
         <mat-card>
             <div>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" [hideRequiredMarker]= "true">
                 <mat-label>Name</mat-label>
-                <input matInput placeholder="Name" >
+                <mat-error>Name is required</mat-error>
+                <input matInput placeholder="Name" name="name" ngModel required>
             </mat-form-field>
             </div>
             <div>
-            <mat-form-field  appearance="outline">
-                <mat-label>Adress</mat-label>
-                <input matInput placeholder="Adress" >
+            <mat-form-field  appearance="outline" [hideRequiredMarker]= "true">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Adress" name="address" ngModel>
             </mat-form-field>
         </div>
         <div>
-            <mat-form-field  appearance="outline">
+            <mat-form-field  appearance="outline" [hideRequiredMarker]= "true">
                 <mat-label>Phone Number</mat-label>
-                <input matInput placeholder="Phone Number" >
+                <mat-error>Phone number is required</mat-error>
+                <input matInput placeholder="Phone Number" name="phone" ngModel [pattern]="'^[0-9]{10,13}$'" required>
             </mat-form-field>
         </div>
         <div>
-            <mat-form-field  appearance="outline">
+            <mat-form-field  appearance="outline" [hideRequiredMarker]= "true">
                 <mat-label>Favourite Sport</mat-label>
-                <mat-select placeholder="Favourite Sport" >
+                <mat-select placeholder="Favourite Sport" name="sport" ngModel>
                     <mat-option value="cricket">Cricket</mat-option>
                     <mat-option value="football">Football</mat-option>
                     <mat-option value="hockey">Hockey</mat-option>
@@ -32,12 +34,13 @@
             
         </div>
         <div>
-            <mat-form-field  appearance="outline">
+            <mat-form-field  appearance="outline" [hideRequiredMarker]= "true">
                 <mat-label>Donation Amount</mat-label>
-                <input matInput placeholder="Donation Amount" >
+                <mat-error>Donation Amount is required</mat-error>
+                <input matInput placeholder="Donation Amount" name="donation" ngModel type="number" min="0" [pattern]="'^[1-9][0-9]*$'" required>
             </mat-form-field>
         </div>
-        <button mat-raised-button color="primary">Submit</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid">Submit</button>
         </mat-card>
     </form>
 </div>
