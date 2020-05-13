@@ -1,0 +1,9 @@
+.footer-row  mat-footer-cell {
+    justify-content: center;
+}
+.hide{
+    display: none;
+}
+:host{
+    overflow: hidden;
+}
