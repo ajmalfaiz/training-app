@@ -1,6 +1,7 @@
 
 .container{
-    background-color: #15202B;
+    background-color: #4d001f;
+    height: 100vh;
 }
 .container-card{
     display: flex;

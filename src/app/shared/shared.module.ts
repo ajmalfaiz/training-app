@@ -11,6 +11,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -24,7 +25,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatButtonModule,
     FlexLayoutModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+
+
     
     
   ],

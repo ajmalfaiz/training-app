@@ -7,6 +7,16 @@ import { DefaultModule } from './layouts/default/default.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 
+//angular - firebase
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { CrudService } from './service/crud.service';
+
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -16,9 +26,14 @@ import { AuthModule } from './auth/auth.module';
     BrowserAnimationsModule,
     DefaultModule,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+        //firebase
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireDatabaseModule,
+        AngularFirestoreModule
+     
   ],
-  providers: [],
+  providers: [ CrudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

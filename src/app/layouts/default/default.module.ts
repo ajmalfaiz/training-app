@@ -14,7 +14,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatFormFieldModule,
     MatSelectModule,
     MatTableModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSnackBarModule
   ]
 })
 export class DefaultModule { }
