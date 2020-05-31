@@ -1,6 +1,6 @@
 # Nature
 
-Learning angular frontend with nodejs backend
+Learning angular material frontend with nodejs backend
 
 ## Development server
 
