@@ -30,7 +30,7 @@
               type="email"
               matInput
               ngModel
-              name="email" required
+              name="email" required [(ngModel)]="email"
             /> </mat-form-field
           ><br />
 
@@ -39,7 +39,7 @@
             <input
               type="password"
               matInput
-              ngModel name="password" required minlength="6"
+              ngModel name="password" required [(ngModel)]="password"
             /> </mat-form-field 
           ><br />
           <button type="submit" mat-raised-button color="primary" [disabled]="!authForm.valid">{{ loginMode ? 'Login' : 'Sign Up'}}</button> &nbsp;

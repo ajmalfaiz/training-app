@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CrudService } from 'src/app/service/crud.service';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table'
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-admin',
@@ -13,32 +14,32 @@ import { MatPaginator } from '@angular/material/paginator';
 export class AdminComponent implements OnInit {
   searchKey;
   customers;
+  Produts;
   displayedColumns: string[] = ['name','phone', 'address', 'sport', 'donation', 'actions'];
   listData: MatTableDataSource<any>;
 
   @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(public crud: CrudService) {
+  constructor(private http: HttpClient) {
     this.getData();
    }
 
   ngOnInit(): void {
   }
   getData() {
-    this.crud.GetService().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(customers => {
+
+    const  headers = new  HttpHeaders().set('x-access-token', '' + JSON.parse(localStorage.getItem('trainin_users')).token);
+    this.http.get(`${environment.apiUrl}/auth/products`, {headers}).subscribe(
+      (data: any) => {
+        this.Produts = data;
+      },
+      (err: HttpErrorResponse) => {
       
-      this.customers = customers;
-      this.listData = new MatTableDataSource(customers);
-      this.listData.sort = this.sort;
-      this.listData.paginator = this.paginator;
-    });
+       alert('failed');
+      }
+    );
+   
   }
   onSearchClear(){
     this.searchKey = "";
@@ -46,5 +47,8 @@ export class AdminComponent implements OnInit {
   }
   applyFilter(){
     this.listData.filter = this.searchKey.trim().toLowerCase();
+  }
+  delete(element){
+    this.customers.object('/admin/' + element.key).remove();
   }
 }

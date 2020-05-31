@@ -13,7 +13,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { CrudService } from './service/crud.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -26,14 +26,9 @@ import { CrudService } from './service/crud.service';
     BrowserAnimationsModule,
     DefaultModule,
     AppRoutingModule,
-    AuthModule,
-        //firebase
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule,
-        AngularFirestoreModule
-     
+    HttpClientModule,
   ],
-  providers: [ CrudService],
+  // providers: [ CrudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CrudService } from 'src/app/service/crud.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse, HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers',
@@ -10,26 +12,44 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CustomersComponent implements OnInit {
   customers=[];
+  donation;
+  name;
+  mobile;
+  address;
+  sports;
 
-  constructor(public crud: CrudService, private _snackBar: MatSnackBar) { }
+  constructor( private _snackBar: MatSnackBar,private http: HttpClient,
+    private router:Router) { }
 
   ngOnInit(): void {
   }
   onAdd(form: NgForm){
     let value = {}
     value = form.value;
-    this.crud.AddService(value).then(res => {
-        this._snackBar.open('Form Submitted', 'Done', {
-          duration: 2000,
-        });
-        form.reset();
-    }).catch(error => {
-      this._snackBar.open('An Unknown Error Occured', 'Done', {
-        duration: 2000
-      });
-    })
-  }
+    const datas= JSON.stringify(value);
 
- 
- 
+    // const  headers = new  HttpHeaders().set('authorization', 'JWT ' + JSON.parse(localStorage.getItem('Getusers')).token);
+    this.http.post(`${environment.apiUrl}/products`,{ "name":this.name,
+    "donation":this.donation,
+    "mobile":this.mobile,
+    "sports":this.sports,
+    "address":this.address
+      
+
+    }).subscribe(
+      (data: any) => {
+        alert('sucesss');
+        form.resetForm();
+        this.router.navigateByUrl('/admin');
+       
+       
+      },
+      (err: HttpErrorResponse) => {
+        alert('failed');
+        
+      }
+    );
+    }
+    
+
 }

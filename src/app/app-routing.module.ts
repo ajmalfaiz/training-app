@@ -12,14 +12,17 @@ const routes: Routes = [
       //layout
     path: '',
     component: DefaultComponent,
+    canActivate: [AuthGuard],
     children: [
       {
           //common entry
         path: '',
         component: DashboardComponent,
+        canActivate: [AuthGuard],
       },{
           path: 'customers',
-          component: CustomersComponent
+          component: CustomersComponent,
+          canActivate: [AuthGuard],
       },
       {
           path: 'admin',
