@@ -14,14 +14,9 @@
             ><mat-icon *ngIf="isAuthenticated">verified_user</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="/login" *ngIf="!isAuthenticated">
-              Sign in
-            </button>
-           
-            <button mat-menu-item routerLink="/admin" *ngIf="isAuthenticated">
-              View Submissions
-            </button>
-            <button mat-menu-item (click)="onLogout()" *ngIf="isAuthenticated">
+            
+            
+            <button mat-menu-item (click)="onLogout()" >
               Sign Out
             </button>
             <!-- <button mat-menu-item>Sign out</button> -->

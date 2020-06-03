@@ -30,11 +30,31 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+    
+
     if (!form.valid){
       return;
     } else {
 
-      this.auth.login(this.email, this.password)
+
+      if(this.loginMode){
+
+
+      this.auth.login(form.value.email, form.value.password)
+      .subscribe(
+        data => {
+          alert('success');
+          this.router.navigate(['/admin']);
+          // this.router.navigateByUrl(this.returnUrl);
+        },
+        error => {
+          alert('failed')
+         // this.myform.reset(this.phone);
+         // this.myform.reset(this.password);
+         
+        });
+    }else {
+      this.auth.signup(form.value.name,form.value.email, form.value.password)
       .subscribe(
         data => {
           alert('success');
@@ -48,6 +68,11 @@ export class LoginComponent implements OnInit {
          
         });
       
+      
+
+
+
+    }
 
     }
 

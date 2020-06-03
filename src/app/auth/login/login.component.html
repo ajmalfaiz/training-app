@@ -24,13 +24,23 @@
         <form (ngSubmit)="onSubmit(authForm)" #authForm="ngForm" *ngIf="!isLoading">
           <h2>Login</h2>
 
+          <mat-form-field appearance="outline" [hideRequiredMarker]="true" *ngIf="!loginMode">
+            <mat-label>Name</mat-label>
+            <input
+              type="text"
+              matInput
+              ngModel
+              name="name" required ngModel
+            /> </mat-form-field
+          > <br />
+
           <mat-form-field appearance="outline" [hideRequiredMarker]="true">
             <mat-label>E-mail</mat-label>
             <input
               type="email"
               matInput
               ngModel
-              name="email" required [(ngModel)]="email"
+              name="email" required ngModel
             /> </mat-form-field
           ><br />
 
@@ -39,11 +49,11 @@
             <input
               type="password"
               matInput
-              ngModel name="password" required [(ngModel)]="password"
+              ngModel name="password" required ngModel
             /> </mat-form-field 
           ><br />
           <button type="submit" mat-raised-button color="primary" [disabled]="!authForm.valid">{{ loginMode ? 'Login' : 'Sign Up'}}</button> &nbsp;
-          <button type="button" mat-raised-button color="primary" (click)="switchMode()" color="accent">Switch to {{ loginMode ? 'Sign Up' : 'Login'}}</button>
+          <button type="button" mat-raised-button color="primary" (click)="switchMode();" color="accent">Switch to {{ loginMode ? 'Sign Up' : 'Login'}}</button>
         </form>
       </mat-card>
     </div>
