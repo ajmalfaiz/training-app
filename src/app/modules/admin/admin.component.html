@@ -7,7 +7,7 @@
 
     </mat-form-field>
   </div>
-  <table mat-table [dataSource]="listData" class="mat-elevation-z8" style="width: 100%;" matSort>
+  <table mat-table [dataSource]="Produts" class="mat-elevation-z8" style="width: 100%;" matSort>
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -19,9 +19,9 @@
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="phone">
+    <ng-container matColumnDef="mobile">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
-      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
     </ng-container>
   
     <ng-container matColumnDef="address">
@@ -29,9 +29,9 @@
       <td mat-cell *matCellDef="let element"> {{element.address}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="sport">
+    <ng-container matColumnDef="sports">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Sports </th>
-      <td mat-cell *matCellDef="let element"> {{element.sport}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.sports}} </td>
     </ng-container>
 
     <ng-container matColumnDef="donation">

@@ -12,10 +12,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+
   searchKey;
   customers;
   Produts;
-  displayedColumns: string[] = ['name','phone', 'address', 'sport', 'donation', 'actions'];
+  displayedColumns: string[] = ['name','mobile', 'address', 'sports', 'donation', 'actions'];
   listData: MatTableDataSource<any>;
 
   @ViewChild(MatSort) sort:MatSort;
@@ -29,10 +30,13 @@ export class AdminComponent implements OnInit {
   }
   getData() {
 
-    const  headers = new  HttpHeaders().set('x-access-token', '' + JSON.parse(localStorage.getItem('trainin_users')).token);
-    this.http.get(`${environment.apiUrl}/auth/products`, {headers}).subscribe(
+   //  const  headers = new  HttpHeaders().set('x-access-token', '' + JSON.parse(localStorage.getItem('trainin_users')).token);
+    this.http.get(`${environment.apiUrl}/products`, {}).subscribe(
       (data: any) => {
+       
         this.Produts = data;
+        JSON.parse(this.Produts)
+        console.log(this.Produts)
       },
       (err: HttpErrorResponse) => {
       
@@ -46,7 +50,7 @@ export class AdminComponent implements OnInit {
     this.applyFilter();
   }
   applyFilter(){
-    this.listData.filter = this.searchKey.trim().toLowerCase();
+    this.Produts.filter = this.searchKey.trim().toLowerCase();
   }
   delete(element){
     this.customers.object('/admin/' + element.key).remove();

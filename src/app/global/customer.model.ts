@@ -3,8 +3,7 @@ export interface Customer {
   address: string,
   donation: number,
   mobile: number,
-  sports:string,
-  date: Date  
+  sports:string
 
 
 }

@@ -5,6 +5,7 @@ import { HttpErrorResponse, HttpHeaders, HttpClient } from '@angular/common/http
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/global/customer.service';
+import { Customer } from 'src/app/global/customer.model';
 
 @Component({
   selector: 'app-customers',
@@ -25,12 +26,13 @@ export class CustomersComponent implements OnInit {
   ngOnInit(): void {
   }
   onAdd(form: NgForm){
-   
+   var value: Customer;
+   value = form.value;
   
     
 
     // const  headers = new  HttpHeaders().set('authorization', 'JWT ' + JSON.parse(localStorage.getItem('Getusers')).token);
-    this.customer.add_customer(form.value.name ,form.value.address, form.value.donation, form.value.mobile, form.value.sports).subscribe(
+    this.customer.add_customer(value).subscribe(
       (res: any) => {
         
         form.resetForm();

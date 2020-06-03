@@ -11,25 +11,20 @@ import { map } from 'rxjs/operators';
 
 export class CustomerService {
 
-  constructor(private http:HttpClient,
-    private customer: Customer) { 
+  constructor(private http:HttpClient) { 
     
   }
 
 
 
 
-  add_customer(name: string,
-    address: string,
-    donation: number,
-    mobile: number,
-    sports:string
+  add_customer(customer:Customer
   ) {
-   return this.http.post(`${environment.apiUrl}/products`,{ "name":name,
-    "donation":donation,
-    "mobile":mobile,
-    "sports":sports,
-    "address":address
+   return this.http.post(`${environment.apiUrl}/products`,{ "name":customer.name,
+    "donation":customer.donation,
+    "mobile":customer.mobile,
+    "sports":customer.sports,
+    "address":customer.address
       
 
     }) .pipe(map(
