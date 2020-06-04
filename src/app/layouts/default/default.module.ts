@@ -19,13 +19,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ProfileComponent } from 'src/app/modules/profile/profile.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     DefaultComponent,
     AdminComponent,
-    CustomersComponent
+    CustomersComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

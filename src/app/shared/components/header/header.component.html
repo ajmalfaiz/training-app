@@ -18,8 +18,8 @@
           </button>
           <mat-menu #menu="matMenu">
             
-            <button mat-menu-item>
-              {{current_user}} (user)
+            <button mat-menu-item routerLink="/User">
+              {{current_user}} 
             </button >
             
             <button mat-menu-item (click)="onLogout()" >

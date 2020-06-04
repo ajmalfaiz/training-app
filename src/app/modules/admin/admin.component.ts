@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { MsgService } from 'src/app/global/msg.service';
 
 @Component({
   selector: 'app-admin',
@@ -15,14 +16,14 @@ export class AdminComponent implements OnInit {
 
   searchKey;
   customers;
-  Produts;
+
   displayedColumns: string[] = ['name','mobile', 'address', 'sports', 'donation', 'actions'];
-  listData: MatTableDataSource<any>;
+  Produts: MatTableDataSource<any>;
 
   @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private message_service: MsgService) {
     this.getData();
    }
 
@@ -33,14 +34,17 @@ export class AdminComponent implements OnInit {
    //  const  headers = new  HttpHeaders().set('x-access-token', '' + JSON.parse(localStorage.getItem('trainin_users')).token);
     this.http.get(`${environment.apiUrl}/products`, {}).subscribe(
       (data: any) => {
+
+        this.customers = data;
+        this.Produts = new MatTableDataSource(data);
+        this.Produts.sort = this.sort;
+        this.Produts.paginator = this.paginator;
        
-        this.Produts = data;
-        JSON.parse(this.Produts)
-        console.log(this.Produts)
+        
       },
       (err: HttpErrorResponse) => {
       
-       alert('failed');
+       this.message_service.showErrorMessage('Internal server error','');
       }
     );
    

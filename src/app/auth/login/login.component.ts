@@ -48,12 +48,10 @@ export class LoginComponent implements OnInit {
         data => {
          this.message_service.showSuccessMessage('logged in','');
           this.router.navigate(['/admin']);
-          // this.router.navigateByUrl(this.returnUrl);
         },
         error => {
          this.message_service.showErrorMessage('internal server error','');
-         // this.myform.reset(this.phone);
-         // this.myform.reset(this.password);
+       
          
         });
     }else {
@@ -62,12 +60,11 @@ export class LoginComponent implements OnInit {
         data => {
           this.message_service.showSuccessMessage('sign up successfully','');
           this.router.navigate(['/admin']);
-          // this.router.navigateByUrl(this.returnUrl);
+         
         },
         error => {
           this.message_service.showErrorMessage('internal server error','');
-         // this.myform.reset(this.phone);
-         // this.myform.reset(this.password);
+         
          
         });
       

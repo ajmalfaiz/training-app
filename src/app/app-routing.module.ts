@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { CustomersComponent } from './modules/customers/customers.component';
 import { AdminComponent } from './modules/admin/admin.component';
 import { AuthGuard } from './authentication/auth.guard';
+import { ProfileComponent } from './modules/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
           path: 'customers',
           component: CustomersComponent,
           canActivate: [AuthGuard],
+      },{
+          path:'User',
+          component: ProfileComponent,
+          canActivate: [AuthGuard]
       },
       {
           path: 'admin',

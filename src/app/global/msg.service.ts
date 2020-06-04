@@ -27,7 +27,7 @@ export class MsgService {
 
 
   showSuccessMessage(title: string, message: string) {
-    this._toastr.success(title, message);
+    this._toastr.success(title, message );
 }
 
 showErrorMessage(title: string, message: string) {

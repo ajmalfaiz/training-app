@@ -60,9 +60,8 @@
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <tr class="footer-row" mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': listData!=null}"></tr>
-    <tr class="footer-row" mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': !(listData!=null && listData.data.length==0)}"></tr>
+    <tr class="footer-row" mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': Produts!=null}"></tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10"></mat-paginator>
   
 </mat-card>
