@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { MsgService } from 'src/app/global/msg.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,9 @@ export class LoginComponent implements OnInit {
   error: string = null;
 
   constructor(private auth: AuthserviceService,
-    private _snackBar: MatSnackBar, private router: Router) { }
+    private _snackBar: MatSnackBar, private router: Router,
+    private message_service : MsgService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -43,12 +46,12 @@ export class LoginComponent implements OnInit {
       this.auth.login(form.value.email, form.value.password)
       .subscribe(
         data => {
-          alert('success');
+         this.message_service.showSuccessMessage('logged in','');
           this.router.navigate(['/admin']);
           // this.router.navigateByUrl(this.returnUrl);
         },
         error => {
-          alert('failed')
+         this.message_service.showErrorMessage('internal server error','');
          // this.myform.reset(this.phone);
          // this.myform.reset(this.password);
          
@@ -57,12 +60,12 @@ export class LoginComponent implements OnInit {
       this.auth.signup(form.value.name,form.value.email, form.value.password)
       .subscribe(
         data => {
-          alert('success');
+          this.message_service.showSuccessMessage('sign up successfully','');
           this.router.navigate(['/admin']);
           // this.router.navigateByUrl(this.returnUrl);
         },
         error => {
-          alert('failed')
+          this.message_service.showErrorMessage('internal server error','');
          // this.myform.reset(this.phone);
          // this.myform.reset(this.password);
          

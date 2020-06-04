@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~9.1.3",
+    "@angular/animations": "^9.1.9",
     "@angular/cdk": "^9.2.2",
     "@angular/common": "~9.1.3",
     "@angular/compiler": "~9.1.3",
@@ -24,6 +24,8 @@
     "@angular/platform-browser-dynamic": "~9.1.3",
     "@angular/router": "~9.1.3",
     "firebase": "^7.14.3",
+    "ngx-snackbar": "^2.0.1",
+    "ngx-toastr": "^12.1.0",
     "renamer": "^2.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

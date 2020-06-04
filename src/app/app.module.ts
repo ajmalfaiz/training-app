@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
+import { ToastrModule } from 'ngx-toastr';
+import {SnackbarModule} from 'ngx-snackbar';
 
 //angular - firebase
 
@@ -26,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     DefaultModule,
     AppRoutingModule,
+    ToastrModule.forRoot(), // ToastrModule added
+    SnackbarModule.forRoot(),
     HttpClientModule,
   ],
   // providers: [ CrudService],
