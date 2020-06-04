@@ -9,12 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
+current_user;
   isAuthenticated = false;
   private userSub: Subscription;
   constructor(private auth: AuthserviceService,private router: Router) { }
 
   ngOnInit(): void {
+    this.current_user = JSON.parse(localStorage.getItem('current_user_name'));
     this.userSub = this.auth.user.subscribe(user => {
       this.isAuthenticated = !!user;
     });

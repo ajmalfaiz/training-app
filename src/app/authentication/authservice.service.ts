@@ -39,6 +39,7 @@ export class AuthserviceService {
         if (user && user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('trainin_users', JSON.stringify(user));
+            localStorage.setItem('current_user_name',JSON.stringify(user.user.name));
             this.currentUserSubject.next(user);
         }
        // localStorage.setItem('userss', user.user.id);
@@ -53,6 +54,7 @@ export class AuthserviceService {
         if (user && user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('trainin_users', JSON.stringify(user));
+            localStorage.setItem('current_user_name',JSON.stringify(user.user.name));
             this.currentUserSubject.next(user);
         }
        // localStorage.setItem('userss', user.user.id);
@@ -64,5 +66,7 @@ export class AuthserviceService {
   // remove user from local storage to log user out
   localStorage.removeItem('trainin_users');
   sessionStorage.removeItem('trainin_users');
+  localStorage.removeItem('current_user_name');
+  sessionStorage.removeItem('current_user_name');
   }
 }

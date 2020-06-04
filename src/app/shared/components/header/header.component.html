@@ -6,15 +6,21 @@
       </mat-icon>
       <span>Lets Go..</span>
     </button>
+
     <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
       <ul fxLayout="row" fxLayoutGap="20">
         <li>
+          
           <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon *ngIf="!isAuthenticated">account_circle</mat-icon
-            ><mat-icon *ngIf="isAuthenticated">verified_user</mat-icon>
+           
+            <mat-icon >account_circle</mat-icon
+            >
           </button>
           <mat-menu #menu="matMenu">
             
+            <button mat-menu-item>
+              {{current_user}} (user)
+            </button >
             
             <button mat-menu-item (click)="onLogout()" >
               Sign Out
