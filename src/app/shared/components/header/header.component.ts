@@ -16,7 +16,7 @@ current_user;
   constructor(private auth: AuthserviceService,private router: Router) { }
 
   ngOnInit(): void {
-    this.current_user = JSON.parse(localStorage.getItem('current_user_name'));
+    this.current_user = JSON.parse(localStorage.getItem('user_details'));
     
     this.userSub = this.auth.user.subscribe(user => {
       this.isAuthenticated = !!user;

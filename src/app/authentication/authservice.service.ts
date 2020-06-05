@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {  map } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, from } from 'rxjs';
 import { User } from './user.model';
 import { environment } from 'src/environments/environment';
-// import { BehaviorSubject, Observable } from 'rxjs';
-// import { HttpClient } from '@angular/common/http';
-// import { environment } from 'src/environments/environment';
-// import {map} from 'rxjs/operators';
-
+import { JwtService } from './jwt.service';
+import {JwtTockens} from 'src/app/authentication/jwt.model';
 
 
 @Injectable({
@@ -23,13 +20,23 @@ export class AuthserviceService {
   //WEB api
     private currentUserSubject: BehaviorSubject<any>;
     public currentUser: Observable<any>;
-    constructor(private http: HttpClient) {
-      this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('trainin_users')));
+    constructor(private http: HttpClient,
+      private Jwt_service: JwtService) {
+      this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('JwtTockens')));
       this.currentUser = this.currentUserSubject.asObservable();
   }
   public get currentUserValue() {
     return this.currentUserSubject.value;
   }
+
+
+  setToken(Token: JwtTockens) {
+    // Save JWT sent from server in localstorage
+    this.Jwt_service.saveToken(Token.token);
+  
+    
+   
+}
 
   login(email: string, password: string) {
    // const  headers = new  HttpHeaders().set('authorization', 'JWT ' + JSON.parse(localStorage.getItem('users')).jwtToken);
@@ -38,12 +45,12 @@ export class AuthserviceService {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('trainin_users', JSON.stringify(user));
-            localStorage.setItem('current_user_name',JSON.stringify(user.user.name));
-            this.currentUserSubject.next(user);
+        
+            
+           this.setToken(user);
+           this.Jwt_service.setUser(JSON.stringify( user.user));
         }
-       // localStorage.setItem('userss', user.user.id);
-       // return user;
+       
         }));
   }
 
@@ -53,20 +60,15 @@ export class AuthserviceService {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('trainin_users', JSON.stringify(user));
-            localStorage.setItem('current_user_name',JSON.stringify(user.user.name));
-            this.currentUserSubject.next(user);
+            this.setToken(user);
+           this.Jwt_service.setUser(JSON.stringify( user.user));
         }
-       // localStorage.setItem('userss', user.user.id);
-       // return user;
+      
         }));
 
   }
   logout() {
   // remove user from local storage to log user out
-  localStorage.removeItem('trainin_users');
-  sessionStorage.removeItem('trainin_users');
-  localStorage.removeItem('current_user_name');
-  sessionStorage.removeItem('current_user_name');
+  this.Jwt_service.destroyToken();
   }
 }

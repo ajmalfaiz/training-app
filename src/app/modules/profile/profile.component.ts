@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.user_details = JSON.parse(localStorage.getItem('trainin_users'));
+    this.user_details = JSON.parse(localStorage.getItem('user_details'));
   }
 
 }

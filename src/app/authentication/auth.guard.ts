@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
 
 canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.SignserviceServices.currentUserValue;
-    if (localStorage.getItem('trainin_users')) {
+    if (localStorage.getItem('JwtTockens')) {
         return true;
     }
 
