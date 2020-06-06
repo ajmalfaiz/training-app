@@ -5,7 +5,6 @@ import { User } from './user.model';
   providedIn: 'root'
 })
 export class JwtService {
-  user = {};
   private _jwtToken: string = null;
   constructor() { }
 

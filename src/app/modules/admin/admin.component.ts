@@ -6,6 +6,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { MsgService } from 'src/app/global/msg.service';
+import { FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { CustomerService } from 'src/app/global/customer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -16,18 +19,28 @@ export class AdminComponent implements OnInit {
 
   searchKey;
   customers;
-
+  mandoForm: FormGroup;
   displayedColumns: string[] = ['name','mobile', 'address', 'sports', 'donation', 'actions'];
   Produts: MatTableDataSource<any>;
 
   @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  id: any;
 
-  constructor(private http: HttpClient, private message_service: MsgService) {
+  constructor(private http: HttpClient, private message_service: MsgService, private _formBuilder:FormBuilder,
+    private customer_service: CustomerService, private router: Router) {
     this.getData();
    }
 
   ngOnInit(): void {
+    this.mandoForm = this._formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(500)]],
+      mobile: [''],
+      sports: [''],
+      donation: [''],
+      address: ['']
+    });
+
   }
   getData() {
 
@@ -58,5 +71,33 @@ export class AdminComponent implements OnInit {
   }
   delete(element){
     this.customers.object('/admin/' + element.key).remove();
+  }
+  onFormSubmit(){
+
+    this.customer_service.edit_customer(this.id,this.mandoForm.value).subscribe(
+      (res: any) => {
+        
+        this.message_service.showSuccessMessage('Product  updated','');
+      
+      },
+      (err: HttpErrorResponse) => {
+        this.message_service.showErrorMessage('internal server error','');
+      }
+    );
+
+  }
+
+
+  // setting values to form 
+  edit(element){
+    this.id = element._id;
+   this.mandoForm.setValue({
+    name: element.name,
+    mobile: element.mobile,
+    donation: element.donation,
+    sports: element.sports,
+    address: element.address
+
+   })
   }
 }

@@ -42,7 +42,9 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button (click)="delete(element)"><mat-icon>delete</mat-icon></button>
+        <button class="btn btn-primary" (click)="edit(element)"  data-toggle="modal" data-target="#editmodel">Edit</button> &nbsp;
+
+        <button class="btn btn-danger" (click)="delete(element)"  data-toggle="modal" data-target="#delmodel">Delete</button>
       </td>
     </ng-container>
 
@@ -65,3 +67,72 @@
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10"></mat-paginator>
   
 </mat-card>
+
+
+ <!-- Modal  delete confirm-->
+ <div class="modal fade" id="delmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <h4>Are you Sure Want to Delete?</h4> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal  edit product-->
+<div class="modal fade" id="editmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Edit Product</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="mandoForm" (ngSubmit)="onFormSubmit()">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="recipient-name" formControlName = "name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Mobile:</label>
+            <input type="tel" class="form-control" id="message-text" formControlName = "mobile">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Sports:</label>
+            <input type="tel" class="form-control" id="message-text" formControlName = "sports">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Donations:</label>
+            <input type="tel" class="form-control" id="message-text" formControlName = "donation">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Address:</label>
+            <textarea  class="form-control" id="message-text" formControlName = "address"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+     
+    </div>
+  </div>
+</div>
+

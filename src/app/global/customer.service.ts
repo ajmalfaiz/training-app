@@ -34,5 +34,23 @@ export class CustomerService {
       }
   ));
 }
+ edit_customer(id, customer:Customer){
+  return this.http.patch(`${environment.apiUrl}/products/` +id,{ "name":customer.name,
+  "donation":customer.donation,
+  "mobile":customer.mobile,
+  "sports":customer.sports,
+  "address":customer.address
+    
+
+  }) .pipe(map(
+    (res:any) => {
+        
+    
+    }
+));
+
+
+
+ }
 
 }
