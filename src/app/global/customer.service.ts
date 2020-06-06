@@ -30,7 +30,7 @@ export class CustomerService {
     }) .pipe(map(
       (res:any) => {
           
-      
+      return res;
       }
   ));
 }
@@ -44,7 +44,8 @@ export class CustomerService {
 
   }) .pipe(map(
     (res:any) => {
-        
+    
+      return res;
     
     }
 ));

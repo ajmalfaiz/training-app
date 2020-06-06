@@ -9,7 +9,7 @@ import { MsgService } from 'src/app/global/msg.service';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { CustomerService } from 'src/app/global/customer.service';
 import { Router } from '@angular/router';
-
+declare const $: any;
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -78,6 +78,9 @@ export class AdminComponent implements OnInit {
       (res: any) => {
         
         this.message_service.showSuccessMessage('Product  updated','');
+        this.getData();
+        $(".close").click();
+
       
       },
       (err: HttpErrorResponse) => {
