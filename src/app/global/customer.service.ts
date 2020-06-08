@@ -4,6 +4,7 @@ import { Customer } from './customer.model';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {CustomerStore} from 'src/app/global/customer-store';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,6 @@ export class CustomerService {
   constructor(private http:HttpClient) { 
     
   }
-
 
 
 
@@ -29,7 +29,7 @@ export class CustomerService {
 
     }) .pipe(map(
       (res:any) => {
-          
+       
       return res;
       }
   ));
@@ -44,13 +44,29 @@ export class CustomerService {
 
   }) .pipe(map(
     (res:any) => {
+      this.get_customer().subscribe();
     
-      return res;
+      
     
     }
 ));
 
 
+
+ }
+ get_customer(): Observable<Customer[]>{
+  return this.http.get<Customer[]>(`${environment.apiUrl}/products`,{ 
+ 
+    
+
+  }) .pipe(map(
+    (res:Customer[]) => {
+      CustomerStore.SetCustomerList(res);
+     
+        
+    return res;
+    }
+));
 
  }
 

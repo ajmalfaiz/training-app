@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table'
 import { MatSort } from '@angular/material/sort';
@@ -9,27 +9,30 @@ import { MsgService } from 'src/app/global/msg.service';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { CustomerService } from 'src/app/global/customer.service';
 import { Router } from '@angular/router';
+import { from } from 'rxjs';
+import {CustomerStore} from 'src/app/global/customer-store';
 declare const $: any;
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
+  CustomerStore = CustomerStore;
   searchKey;
-  customers;
   mandoForm: FormGroup;
-  displayedColumns: string[] = ['name','mobile', 'address', 'sports', 'donation', 'actions'];
   Produts: MatTableDataSource<any>;
 
   @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   id: any;
-
+  page=1;
   constructor(private http: HttpClient, private message_service: MsgService, private _formBuilder:FormBuilder,
-    private customer_service: CustomerService, private router: Router) {
-    this.getData();
+    private customer_service: CustomerService, private router: Router,
+    private _cdr: ChangeDetectorRef
+    ) {
+   
    }
 
   ngOnInit(): void {
@@ -40,28 +43,12 @@ export class AdminComponent implements OnInit {
       donation: [''],
       address: ['']
     });
-
-  }
-  getData() {
-
-   //  const  headers = new  HttpHeaders().set('x-access-token', '' + JSON.parse(localStorage.getItem('trainin_users')).token);
-    this.http.get(`${environment.apiUrl}/products`, {}).subscribe(
-      (data: any) => {
-
-        this.customers = data;
-        this.Produts = new MatTableDataSource(data);
-        this.Produts.sort = this.sort;
-        this.Produts.paginator = this.paginator;
-       
-        
-      },
-      (err: HttpErrorResponse) => {
-      
-       this.message_service.showErrorMessage('Internal server error','');
-      }
-    );
    
+    // getting product list
+    this.customer_service.get_customer().subscribe();
   }
+  
+  
   onSearchClear(){
     this.searchKey = "";
     this.applyFilter();
@@ -70,15 +57,14 @@ export class AdminComponent implements OnInit {
     this.Produts.filter = this.searchKey.trim().toLowerCase();
   }
   delete(element){
-    this.customers.object('/admin/' + element.key).remove();
+    
   }
   onFormSubmit(){
 
     this.customer_service.edit_customer(this.id,this.mandoForm.value).subscribe(
       (res: any) => {
-        
         this.message_service.showSuccessMessage('Product  updated','');
-        this.getData();
+        this.message_service.detectChanges(this._cdr);
         $(".close").click();
 
       
@@ -92,14 +78,14 @@ export class AdminComponent implements OnInit {
 
 
   // setting values to form 
-  edit(element){
-    this.id = element._id;
+  edit(cust){
+    this.id = cust._id;
    this.mandoForm.setValue({
-    name: element.name,
-    mobile: element.mobile,
-    donation: element.donation,
-    sports: element.sports,
-    address: element.address
+    name: cust.name,
+    mobile: cust.mobile,
+    donation: cust.donation,
+    sports: cust.sports,
+    address: cust.address
 
    })
   }

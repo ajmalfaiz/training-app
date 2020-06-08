@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { SnackbarService } from 'ngx-snackbar';
 
@@ -37,6 +37,8 @@ showErrorMessage(title: string, message: string) {
 showWarningMessage(title: string, message: string){
     this._toastr.warning(title, message);
 }
-
+detectChanges(cdr: ChangeDetectorRef) {
+  if (!cdr['destroyed']) cdr.detectChanges();
+}
 
 }

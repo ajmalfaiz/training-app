@@ -20,6 +20,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ProfileComponent } from 'src/app/modules/profile/profile.component';
+import { MobxAngularModule } from 'mobx-angular';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -38,15 +41,18 @@ import { ProfileComponent } from 'src/app/modules/profile/profile.component';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    NgxPaginationModule,
     MatSelectModule,
     MatTableModule,
     FlexLayoutModule,
     FormsModule,
+    Ng2SearchPipeModule,
     ReactiveFormsModule,
     MatIconModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MobxAngularModule
   ]
 })
 export class DefaultModule { }
